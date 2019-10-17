@@ -9,7 +9,10 @@ export default class MovieList extends Component {
       movies: []
     };
   }
-  
+  addMovie = () => {
+    console.log(this);
+    this.props.history.push(`/add-movie`);
+  }
 
   componentDidMount() {
     axios
@@ -23,12 +26,14 @@ export default class MovieList extends Component {
   render() {
     return (
       <div className="movie-list">
-        {this.state.movies.map(movie => (
+        <button onClick={this.addMovie}>Add Movie</button>
+        { this.state.movies.length > 0 ? this.state.movies.map(movie => (
           <>
+          
           <MovieDetails key={movie.id} movie={movie} />
           
           </>
-        ))}
+        )) : 'Searching for Movies'}
       </div>
     );
   }

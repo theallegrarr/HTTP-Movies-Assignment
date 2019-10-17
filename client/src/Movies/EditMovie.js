@@ -6,31 +6,48 @@ import { getDiffieHellman } from 'crypto';
 const EditMovie = props => {
   const [ movie, setMovie ] = useState([])
   const id=props.match.params.id;
-
-  useEffect(() => {
-    getMovies();
-  }, [])
+  
+    useEffect(() => {
+      if(id!==null)getMovies();
+    }, [])
 
   const getMovies = () => {
-
     axiosWithAuth().get(
       `http://localhost:5000/api/movies/${id}`
     ).then(res => {
       setMovie(res.data)
     }).catch(e => console.log(e));
   }
-
+  let starsArray=[];
   const UpdateMovie = ({ id, title, director, metascore, stars }) => {
-    axiosWithAuth().put(
-      `http://localhost:5000/api/movies/${id}`,
-      { id, title, director, metascore, stars },
-    )
-      .then(() => {
-        props.history.push(`/movies/${id}`)
-      })
-      .catch(err => {
-
-      });
+    console.log(id);
+    
+    console.log(starsArray);
+    if(id!==null && id!==undefined){
+      axiosWithAuth().put(
+        `http://localhost:5000/api/movies/${id}`,
+        { id, title, director, metascore, stars },
+      )
+        .then(() => {
+          props.history.push(`/movies/${id}`)
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      starsArray = stars.split(',');
+      axiosWithAuth().post(
+        `http://localhost:5000/api/movies`,
+        { title, director, metascore, stars: starsArray },
+      )
+        .then((res) => {
+          console.log(res);
+          props.history.push(`/`)
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   };
 
   return (

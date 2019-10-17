@@ -24,6 +24,7 @@ const App = (props) => {
       <SavedList list={savedList} />
       <Route exact path="/" component={MovieList} />
       <Route path="/update-movie/:id" component={EditMovie} movieid={ID} {...props} />
+      <Route path="/add-movie" component={EditMovie} {...props} />
       
       <Route
         path="/movies/:id"
