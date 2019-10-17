@@ -9,6 +9,7 @@ export default class MovieList extends Component {
       movies: []
     };
   }
+  
 
   componentDidMount() {
     axios
@@ -17,11 +18,16 @@ export default class MovieList extends Component {
       .catch(err => console.log(err.response));
   }
 
+  
+
   render() {
     return (
       <div className="movie-list">
         {this.state.movies.map(movie => (
+          <>
           <MovieDetails key={movie.id} movie={movie} />
+          
+          </>
         ))}
       </div>
     );
