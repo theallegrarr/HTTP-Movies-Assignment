@@ -66,6 +66,28 @@ body {
   color: white;
 }
 
+.save-button2 {
+  position: absolute;
+  top: 60px;
+  right: 25px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.save-button3 {
+  position: absolute;
+  top: 95px;
+  right: 25px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: red;
+  cursor: pointer;
+}
+
+
+
 .home-button {
   padding: 5px 10px;
   background-color: lightskyblue;
